@@ -76,19 +76,24 @@ const APIPage = (props) => {
                     </div>
                 </form>
             </div>
-            <div className='grid grid-cols-4 gap-4 mt-5 justify-center  '>
+            <div className='grid grid-cols-4 gap-4 mt-5 justify-center '>
                 {filteredItems.map((movie) => (
-                    <div
-                        className='flex my-10 flex-col  justify-center items-center w-[500px]  group'
-                        key={movie.id}
-                    >
-                        <h1 className='w-80 my-4 flex justify-center'>{movie.title}</h1>
-                        <img
-                            className='w-80 my-5 transition-transform duration-300 group-hover:scale-110'
-                            src={`${imageBaseUrl}${movie.poster_path}`}
-                            alt={movie.title}
-                        />
-                    </div>
+                     <div
+                     className='flex my-10 flex-col  justify-center items-center w-[500px]  group'
+                     key={movie.id}
+                   >
+                     <h1 className='w-80 my-4 flex justify-center'>{movie.title}</h1>
+                     <div className='relative'>
+                         <img
+                       className='w-80 my-5 transition-transform duration-300 group-hover:scale-110'
+                       src={`${imageBaseUrl}${movie.poster_path}`}
+                       alt={movie.title}
+                     />
+                     {/* Display the movie rating */}
+                     <p className=" absolute top-5 right-0  bg-red-600 text-white text-md p-1 border rounded-sm  ">Rating: {movie.vote_average}</p>
+                     </div>
+                    
+                   </div>
                 ))}
             </div>
         </div>
