@@ -14,6 +14,7 @@ function APIPage(props) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [popularMovies, setPopularMovies] = useState([]);
+    console.log(isLoggedIn)
     
     
 
@@ -112,9 +113,13 @@ function APIPage(props) {
                             </p>
                         </div>
                         <div className='bg-orange-600 px-5 p-1 border rounded-sm hover:bg-orange-500 my-1'>
-                            <Link className='text-white'  onClick={() => handleViewDetail(movie)}>
-                              View Detail
-                            </Link>
+                        {isLoggedIn ? (
+        <Link className='text-white' onClick={() => handleViewDetail(movie)}>
+            View Detail
+        </Link>
+    ) : (
+        <span className='text-gray-400'>View Detail</span>
+    )}
                         </div>
                     </div>
                 ))}
