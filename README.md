@@ -1,1 +1,2 @@
-[https://github.com/salihcelebi96/movieApp/assets/105693495/7b9fb5cc-d403-495a-b16e-5b2033f94e8a](https://github.com/salihcelebi96/movieApp/assets/105693495/8822f995-ac31-46dd-b6e8-078c8fd9503c)https://github.com/salihcelebi96/movieApp/assets/105693495/8822f995-ac31-46dd-b6e8-078c8fd9503c
+
+https://github.com/salihcelebi96/movieApp/assets/105693495/8822f995-ac31-46dd-b6e8-078c8fd9503c
