@@ -10,8 +10,8 @@ const Search = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here, you can perform any action with the searchValue, such as searching for movies using the value.
-    // For now, let's just console.log the entered value.
+    
+    
     console.log('Search Value:', searchValue);
   };
 

@@ -39,29 +39,29 @@ const AuthForm = () => {
     const dispatch = useDispatch();
 
     const onSubmit = (values, { setSubmitting }) => {
-        // Assuming your authentication logic here...
-        // Check if the username, email, and password are correct
+        
+        
         if (
           values.username === 'correctUsername' &&
           values.email === 'correctEmail@example.com' &&
           values.password === 'correctPassword'
         ) {
-          // Dispatch the LOGIN_SUCCESS action to set isLoggedIn to true
+          
           dispatch({ type: 'LOGIN_SUCCESS', payload: { username: values.username, email: values.email, password: values.password } });
-          // Also, dispatch actions to update username and email in the Redux store
+          
           dispatch(setUsername(values.username));
           dispatch(setEmail(values.email));
           dispatch(setPassword(values.password));
     
-          // Navigate to "/detail" page if logged in
+          
           navigate('/');
         } else {
-          // Dispatch the LOGOUT_SUCCESS action if not logged in
+          
           dispatch({ type: 'LOGOUT_SUCCESS' });
-          // Set submitting to false to indicate form submission is complete
+          
           setSubmitting(false);
     
-          // Navigate to "/formik" page if not logged in
+         
           navigate('/formik');
         }
         console.log('Form submitted');

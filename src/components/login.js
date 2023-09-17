@@ -8,25 +8,25 @@ const Auth = () => {
   const dispatch = useDispatch();
 
   const handleLogin = () => {
-    // Assume you get the form data (username, email, password) from the user input
+    
     const username = 'correctUsername';
     const email = 'correctEmail@example.com';
     const password = 'correctPassword';
 
-    // Assuming your authentication logic here...
-    // Check if the username, email, and password are correct
+   
+    
     if (
       username === 'correctUsername' &&
       email === 'correctEmail@example.com' &&
       password === 'correctPassword'
     ) {
-      // Dispatch the LOGIN_SUCCESS action to set isLoggedIn to true
+      
       dispatch({ type: 'LOGIN_SUCCESS', payload: { username, email, password } });
     }
   };
 
   const handleLogout = () => {
-    // Dispatch the LOGOUT_SUCCESS action to set isLoggedIn to false
+    
     dispatch(logoutUser());
   };
 
