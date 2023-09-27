@@ -2,55 +2,47 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSelectedMovie, clearSelectedMovie } from '../reducers/overViewReducers';
-
-
+import { useAuth0 } from "@auth0/auth0-react";
 
 function APIPage(props) {
+
+    const { logout, isAuthenticated } = useAuth0();
     const searchValue = props.searchValue;
     const setSearchValue = props.setSearchValue;
-
+    const auth = useSelector(state => state.auth.login);
     const overView = useSelector(state => state.overView.movieOverview);
-    const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [popularMovies, setPopularMovies] = useState([]);
-    console.log(isLoggedIn)
-    
-    
+   console.log("auth", isAuthenticated)
 
     const handleViewDetail = async (movie) => {
         try {
-          const response = await fetch(`${apiUrl}/movie/${movie.id}?api_key=${apiKey}`);
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          const data = await response.json();
-    
-          
-          dispatch(setSelectedMovie(data));
-    
-          
-          navigate('/detail');
+            const response = await fetch(`${apiUrl}/movie/${movie.id}?api_key=${apiKey}`);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+
+            dispatch(setSelectedMovie(data));
+
+            navigate('/detail');
         } catch (error) {
-          console.error('Error fetching movie details:', error);
-          
-          dispatch(clearSelectedMovie());
+            console.error('Error fetching movie details:', error);
+
+            dispatch(clearSelectedMovie());
         }
-      };
-      
-      
-      
+    };
 
     const apiKey = 'eb3054698a69019de3e32533a7e48d69';
     const apiUrl = 'https://api.themoviedb.org/3';
-    const imageBaseUrl = 'https://image.tmdb.org/t/p/w500'; 
+    const imageBaseUrl = 'https://image.tmdb.org/t/p/w500';
 
     const handleChange = (e) => {
         setSearchValue(e.target.value);
     };
 
     const filterItems = (items, searchTerm) => {
-       
         if (typeof searchTerm !== 'string') {
             return [];
         }
@@ -66,7 +58,7 @@ function APIPage(props) {
             }
 
             const data = await response.json();
-            
+
             if (data.results && Array.isArray(data.results)) {
                 setPopularMovies(data.results);
             } else {
@@ -82,10 +74,8 @@ function APIPage(props) {
         fetchPopularMovies();
     }, [apiKey, apiUrl]);
 
-    const filteredItems = filterItems(popularMovies, searchValue);
-
     return (
-        <div className='w-full h-full '>
+        <div className='w-full h-full'>
             <div className='flex justify-center pt-3'>
                 <form className='w-[500px]'>
                     <label
@@ -98,7 +88,7 @@ function APIPage(props) {
                 </form>
             </div>
             <div className='grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 mt-5 justify-center'>
-                {filteredItems.map((movie) => (
+                {popularMovies.map((movie) => (
                     <div className='flex my-10 flex-col justify-center items-center w-[500px] group' key={movie.id}>
                         <h1 className='w-80 my-4 flex justify-center'>{movie.title}</h1>
                         <div className='relative'>
@@ -113,14 +103,15 @@ function APIPage(props) {
                             </p>
                         </div>
                         <div className='bg-orange-600 px-5 p-1 border rounded-sm hover:bg-orange-500 my-1'>
-                        {isLoggedIn ? (
-        <Link className='text-white' onClick={() => handleViewDetail(movie)}>
-            View Detail
-        </Link>
-    ) : (
-        <span className='text-gray-400'>View Detail</span>
-    )}
+                            {isAuthenticated ? (
+                                <Link className='text-white' onClick={() => handleViewDetail(movie)}>
+                                    View Detail
+                                </Link>
+                            ) : (
+                                <span className='text-gray-400'>View Detail</span>
+                            )}
                         </div>
+
                     </div>
                 ))}
             </div>

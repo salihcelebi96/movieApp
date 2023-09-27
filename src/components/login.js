@@ -1,52 +1,35 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { setUsername, setEmail, setPassword, logoutUser } from '../reducers/authReducer';
-import {Link} from "react-router-dom";
+import { useAuth0 } from '@auth0/auth0-react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLogin } from '../reducers/authReducer';
 
-const Auth = () => {
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+const LoginButton = () => {
+  const { loginWithRedirect, isAuthenticated, logout: auth0Logout } = useAuth0();
+  const login = useSelector(state => state.auth.login);
   const dispatch = useDispatch();
-
+  
   const handleLogin = () => {
+    loginWithRedirect();
+    dispatch(setLogin(true)); 
     
-    const username = 'correctUsername';
-    const email = 'correctEmail@example.com';
-    const password = 'correctPassword';
-
-   
     
-    if (
-      username === 'correctUsername' &&
-      email === 'correctEmail@example.com' &&
-      password === 'correctPassword'
-    ) {
-      
-      dispatch({ type: 'LOGIN_SUCCESS', payload: { username, email, password } });
-    }
   };
 
   const handleLogout = () => {
+    auth0Logout();
+    dispatch(setLogin(false));  
     
-    dispatch(logoutUser());
   };
-
+  
   return (
-    <div className='text-white absolute top-1 right-2'>
-      {isLoggedIn ? (
-        <div>
-          
-          <button onClick={handleLogout}>Logout</button>
-        </div>
+    <div className='absolute top-3 right-5'>
+      {isAuthenticated ? (
+        <button onClick={handleLogout}>Logout</button>
       ) : (
-        <div>
-            <Link to="/formik">
-            <button onClick={handleLogin}>Login</button>
-            </Link>
-          
-        </div>
+        <button onClick={handleLogin}>Login</button>
       )}
     </div>
   );
 };
 
-export default Auth;
+export default LoginButton;

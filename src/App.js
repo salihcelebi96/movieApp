@@ -1,9 +1,10 @@
 // App.js
 import React from 'react';
-import Formik from "./components/formik";
+
 import Home from './pages/Home';
 import Detail from './pages/Detail';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/detail" element={<Detail />} />
-            <Route path="/formik" element={<Formik/>} />
+            
 
             
           </Routes>
