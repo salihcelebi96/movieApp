@@ -7,8 +7,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store'; 
 
 
-// const domain = process.env.REACT_APP_AUTH0_DOMAIN;
-// const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
+
 
 ReactDOM.render(
   <React.StrictMode>
