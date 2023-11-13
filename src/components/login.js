@@ -24,7 +24,7 @@ const LoginButton = () => {
 
   
   return (
-    <div className='absolute text-2xl   font-semibold border-none p-2  rounded-md  top-3 right-5 hover:bg-gray-300   '>
+    <div className='absolute text-2xl   font-semibold border-none p-2  rounded-md  top-3 right-5 hover:bg-gray-300 border bg-white  '>
       {isAuthenticated ? (
         <button className='text-black' onClick={handleLogout}>Logout</button>
       ) : (
