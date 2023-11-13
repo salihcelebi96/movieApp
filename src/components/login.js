@@ -2,6 +2,7 @@ import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLogin } from '../reducers/authReducer';
+import "../css/login.css"
 
 const LoginButton = () => {
   const { loginWithRedirect, isAuthenticated, logout: auth0Logout } = useAuth0();
@@ -20,13 +21,15 @@ const LoginButton = () => {
     dispatch(setLogin(false));  
     
   };
+
   
   return (
-    <div className='absolute top-3 right-5'>
+    <div className='absolute text-2xl font-semibold border-none p-2  rounded-md  top-3 right-5 hover:bg-gray-300 bg-white  '>
       {isAuthenticated ? (
-        <button onClick={handleLogout}>Logout</button>
+        <button className='' onClick={handleLogout}>Logout</button>
       ) : (
-        <button onClick={handleLogin}>Login</button>
+        <button onClick={handleLogin}
+         className={`login-button      ${isAuthenticated ? '' : 'blinking'}`}  >Login</button>
       )}
     </div>
   );

@@ -97,7 +97,7 @@ function APIPage(props) {
                                 src={`${imageBaseUrl}${movie.poster_path}`}
                                 alt={movie.title}
                             />
-                            {/* Display the movie rating */}
+                            
                             <p className='absolute top-5 right-0 bg-red-600 text-white text-md p-1 border rounded-sm'>
                                 Rating: {movie.vote_average}
                             </p>
