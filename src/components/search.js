@@ -16,8 +16,8 @@ const Search = (props) => {
   };
 
   return (
-    <div className='flex justify-center pt-3'>
-      <form className=' lg:w-[500px]  sm:w-[400px]  ' onSubmit={handleSubmit}>
+    <div className='flex  justify-between sm:justify-around p-5   pt-3'>
+      <form className=' lg:w-[500px]  sm:w-[300px]  ' onSubmit={handleSubmit}>
         <label
           htmlFor='default-search'
           className='mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white'
